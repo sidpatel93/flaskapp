@@ -26,14 +26,13 @@ class User(db.Model, UserMixin):
 
     @property
     def password(self):
-        return self.password
+        return self.password_hash
 
     @password.setter
     def password(self, plaintext_password):
         self.password_hash = bcrypt.generate_password_hash(plaintext_password).decode('utf-8')
 
     def check_password_correction(self, attempted_password):
-
         return bcrypt.check_password_hash(self.password_hash, attempted_password)
 
 
