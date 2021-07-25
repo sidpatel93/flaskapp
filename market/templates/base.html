@@ -29,6 +29,23 @@
                 <a class="nav-link" href="{{ url_for('market_page') }}">Market</a>
             </li>
         </ul>
+        {% if current_user.is_authenticated %}
+
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" style="color:lawngreen; font-weight:bold">
+                    <img src="https://img.icons8.com/offices/30/000000/coins.png"/>
+                    <i class="fas fas-coins"> {{ current_user.prettier_budget}}</i>
+                </a>
+            </li>
+             <li class="nav-item">
+                <a class="nav-link" >Welcome, {{current_user.username}} </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Logout</a>
+            </li>
+        </ul>
+        {% else %}
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link" href="{{url_for('login_page')}}">Login</a>
@@ -37,6 +54,7 @@
                 <a class="nav-link" href="{{ url_for('register_page')}}">Register</a>
             </li>
         </ul>
+        {% endif %}
     </div>
 </nav>
 <!-- Content -->
